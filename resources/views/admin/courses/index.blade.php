@@ -63,7 +63,15 @@
                                             <span class="badge badge-info">{{ $item->fname." ".$item->lname }}</span>
                                         @endforeach
                                     </td>
-                                    <td>{{$course->name}}</td>
+                                   
+                                    <td>
+                                       
+                                @foreach($course->topics as $key => $item)
+                                  
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                                    </td>
+
                                     <td>{{$course->slug}}</td>
                                     <td>{{$course->subject}}</td>
                                     <td><span class="{{$course->is_important ? 'badge bg-green' : 'badge bg-red'}}">{{$course->is_important ? 'YES' : 'NO'}} </span></td>

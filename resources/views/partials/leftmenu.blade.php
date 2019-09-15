@@ -1,6 +1,13 @@
  <?php      
 use App\Topic;
- $topics = Topic::all();
+use App\Course;
+ 
+ $uri = Request::path();
+
+ $str = $uri;
+$course_id = preg_replace('/\D/', '', $str);
+$courses = Course::where('id',$course_id)->get();
+ $topics = Topic::all()->pluck('title', 'id');
  ?>
  <!-- <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
@@ -42,31 +49,32 @@ use App\Topic;
                             <span>Course Material</span>
                         </a>
                     </li>
-                     @foreach($topics as $topic)
-                    <li class="">
 
-                        <a href="javascript:void(0);" class="menu-toggle course-topic-link">
-                            <i class="material-icons">assignment_turned_in</i>
-                            <span>{{$topic->name}}</span>
-                        </a>
-                        <ul class="ml-menu">
+                     @foreach($course->topics as $key => $item)
+                        <li class="">
 
-                           
-                            <li class="">
-                                <a href="javascript:void(0);" class="topic-task-link">
-                                    <span>Task 2</span>
-                                </a>
-                                
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0);" class="topic-task-link">
-                                    <span>Task 3</span>
-                                </a>
-                                
-                            </li>
-                        </ul>
-                    </li>
-                     @endforeach
+                            <a href="javascript:void(0);" class="menu-toggle course-topic-link">
+                                <i class="material-icons">assignment_turned_in</i>
+                                <span>{{$item->title}}</span>
+                            </a>
+                            <ul class="ml-menu">
+
+                               
+                                <li class="">
+                                    <a href="javascript:void(0);" class="topic-task-link">
+                                        <span>Task 2</span>
+                                    </a>
+                                    
+                                </li>
+                                <li class="">
+                                    <a href="javascript:void(0);" class="topic-task-link">
+                                        <span>Task 3</span>
+                                    </a>
+                                    
+                                </li>
+                            </ul>
+                        </li>
+                        @endforeach
                   
                       
                      

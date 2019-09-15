@@ -28,6 +28,7 @@ class Course extends Model
         'login_id',
         'proxy_id',
         'name',
+        'topic',
         'slug',
         'subject',
         'is_important',
@@ -44,7 +45,7 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class);
     }
-     public function topics()
+    public function topics()
     {
         return $this->belongsToMany(Topic::class);
     }

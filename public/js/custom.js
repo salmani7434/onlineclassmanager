@@ -544,7 +544,7 @@
                         // console.log(data);
                     if(data.status =='success'){
                          message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#name').val('');
+                        $('#title').val('');
 
                     }else{
                         $.each(data.errors, function(key, value){

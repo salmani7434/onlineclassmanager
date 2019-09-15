@@ -226,12 +226,12 @@
               <input type="hidden" name="course_id" id="course_id" value="{{$course->id}}">
                <br><div class="row clearfix">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                    <label for="name">Topic Name <span class="col-red">*</span></label>
+                    <label for="title">Topic Title <span class="col-red">*</span></label>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                     <div class="form-group">
                         <div class="form-line">
-                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus placeholder="Last Name"> 
+                            <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus placeholder="Enter Topic Title"> 
 
                         </div>
                     </div>

@@ -9,6 +9,7 @@
         </div>
     </div>
 @endcan
+ ?>
 <div class="card">
     <div class="header">
        @if (session()->has('success'))
@@ -67,6 +68,8 @@
                 </thead>
                 <tbody id="users">
                     @foreach($users as $key => $user)
+                        <?php echo "<pre>".print_r($user)."</pre>";?>
+
                         <tr data-entry-id="{{ $user->id }}" id="user_{{ $user->id ?? '' }}">
                             <td>
                                 {{ $user->id ?? '' }}

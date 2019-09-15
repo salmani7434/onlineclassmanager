@@ -101,7 +101,7 @@ class CourseTopicController extends Controller
 
 
           $rules = array(
-            'name'  => 'required | string | min:3 | max :100 | unique:topics',
+            'title'  => 'required | string | min:3 | max :100 | unique:topics',
                    );
         $validator = Validator::make ( Input::all(), $rules);
         if ($validator->fails()){
@@ -111,7 +111,7 @@ class CourseTopicController extends Controller
         else {
             $data = $request->input();
             $topic = new Topic();
-            $topic->name = $data['name'];
+            $topic->title = $data['title'];
             $topic->save();
             $course_id = $data['course_id'];
             $topic->courses()->sync($course_id, []);
