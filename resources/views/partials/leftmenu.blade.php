@@ -1,14 +1,4 @@
- <?php      
-use App\Topic;
-use App\Course;
  
- $uri = Request::path();
-
- $str = $uri;
-$course_id = preg_replace('/\D/', '', $str);
-$courses = Course::where('id',$course_id)->get();
- $topics = Topic::all()->pluck('title', 'id');
- ?>
  <!-- <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
@@ -46,7 +36,7 @@ $courses = Course::where('id',$course_id)->get();
                     <li class="{{ Route::currentRouteName() == 'admin.course.show' ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="course-material-link">
                             <i class="material-icons">book</i>
-                            <span>Course Material</span>
+                            <span>{{$course->name}} Material</span>
                         </a>
                     </li>
 
