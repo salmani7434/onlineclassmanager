@@ -7,23 +7,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Course;
-use App\Task;
-class Topic extends Model
+use App\Topic;
+class Task extends Model
 {
+    //
+
     //
 	 use SoftDeletes, Notifiable, HasApiTokens;
 
-    public $table = 'topics';
+    public $table = 'tasks';
 
  
     protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
+        'due_date',
+        'completion_date',
     ];
 
     protected $fillable = [
         'title',
+        'type',
+        'due_date',
+        'completion_date',
+        'is_complete',
+        'instruction',
+        'amout',
         
     ];
 
@@ -31,8 +41,8 @@ class Topic extends Model
     {
         return $this->belongsToMany(Course::class);
     }
-    public function tasks()
+    public function topics()
     {
-        return $this->belongsToMany(Task::class);
+        return $this->belongsToMany(Topic::class);
     }
 }

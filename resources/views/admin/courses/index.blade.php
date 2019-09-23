@@ -28,14 +28,14 @@
                                     <th>ID</th>
                                     <th>Added By</th>
                                     <th>Course Name</th>
-                                    <th>Slug</th>
+                                    <th>Topics</th>
                                     <th>Subject</th>
                                     <th>Important</th>
                                     <th>Objectives</th>
                                     <th>Start Date</th>
                                     <th>Completion Date</th>
                                     <th>Setup</th>
-                                    <th width="50">Action</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -43,7 +43,7 @@
                                     <th>ID</th>
                                     <th>Added By</th>
                                     <th>Course Name</th>
-                                    <th>Slug</th>
+                                    <th>Topics</th>
                                     <th>Subject</th>
                                     <th>Important</th>
                                     <th>Objectives</th>
@@ -63,7 +63,7 @@
                                             <span class="badge badge-info">{{ $item->fname." ".$item->lname }}</span>
                                         @endforeach
                                     </td>
-                                   
+                                    <td>{{$course->name}}</td>
                                     <td>
                                        
                                 @foreach($course->topics as $key => $item)
@@ -72,7 +72,7 @@
                                 @endforeach
                                     </td>
 
-                                    <td>{{$course->slug}}</td>
+                                    
                                     <td>{{$course->subject}}</td>
                                     <td><span class="{{$course->is_important ? 'badge bg-green' : 'badge bg-red'}}">{{$course->is_important ? 'YES' : 'NO'}} </span></td>
                                     <td>{{$course->course_objectives}}</td>

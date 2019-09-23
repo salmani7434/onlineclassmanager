@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -151,7 +150,6 @@ class CourseController extends Controller
             'start_date'        => 'required ',
             'completion_date'   => 'required',
             'course_objectives' => 'required',
-            'setup'             => 'required', 
           );
         $validator = Validator::make ( Input::all(), $rules);
         if ($validator->fails())

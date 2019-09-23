@@ -9,7 +9,7 @@
         </div>
     </div>
 @endcan
- ?>
+
 <div class="card">
     <div class="header">
        @if (session()->has('success'))
@@ -68,8 +68,6 @@
                 </thead>
                 <tbody id="users">
                     @foreach($users as $key => $user)
-                        <?php echo "<pre>".print_r($user)."</pre>";?>
-
                         <tr data-entry-id="{{ $user->id }}" id="user_{{ $user->id ?? '' }}">
                             <td>
                                 {{ $user->id ?? '' }}
@@ -152,7 +150,7 @@
                 <br><div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
                         <button type="submit" class="btn btn-danger"  id="btnEditUser">
-                            Save Changes
+                            Save
                         </button>
                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
 
@@ -192,7 +190,7 @@
                 <br><div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
                         <button type="submit" class="btn btn-danger"  id="btnEditUser">
-                            {{ trans('global.save') }}
+                            Save Changes
                         </button>
                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
 

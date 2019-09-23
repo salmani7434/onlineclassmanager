@@ -25,7 +25,7 @@
             <div class="menu" style="overflow-y: scroll; height:90%;">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-
+                    
                     <?php  
                     $name = Route::currentRouteName();
                     $uri = Request::path();
@@ -33,6 +33,12 @@
 
                      ?>
                      <div class="course-material-navs">
+                        <li class="{{ Request::path() == 'admin/course' ? 'active' : '' }}">
+                        <a href="{{url('/admin/course')}}">
+                            <i class="material-icons">arrow_back</i>
+                            <span>Courses</span>
+                        </a>
+                    </li>
                     <li class="{{ Route::currentRouteName() == 'admin.course.show' ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="course-material-link">
                             <i class="material-icons">book</i>

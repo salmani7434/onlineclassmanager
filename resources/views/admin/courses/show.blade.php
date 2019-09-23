@@ -89,12 +89,12 @@
               <form class="form-horizontal">
                   <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                      <label for="task_name">Task Name</label>
+                      <label for="title">Task Title</label>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" class="form-control" name="task_name">
+                            <input type="text" class="form-control" name="title" id="title">
                           </div>
                         </div>
                   </div>
