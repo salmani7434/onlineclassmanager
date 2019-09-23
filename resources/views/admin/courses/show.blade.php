@@ -86,47 +86,59 @@
               <h4 class="modal-title">Add Task</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal">
-                  <br><div class="row clearfix">
+              <form class="form-horizontal frmAddTask"  method="POST" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                  <div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="title">Task Title</label>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" class="form-control" name="title" id="title">
+                            <input id="title" type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus placeholder="Enter Task Title"> 
+                             @if($errors->has('title'))
+                              <p class="help-block">
+                                  {{ $errors->first('title') }}
+                              </p>
+                          @endif
+                         
                           </div>
                         </div>
                   </div>
               </div>
                   <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                      <label for="name">Task Type</label>
+                      <label for="type">Task Type</label>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
-                             <div >
-                              <select class="form-control">
-                                  <option>Pakistan</option>
-                                  <option>Keniya</option> 
-                                  <option>England</option>
-                                  <option>Australia</option>
-                              </select>
-                             </div>
+                          <div class="form-line">
+                            <input id="type" type="text" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ old('type') }}" required  placeholder="Enter Task Type"> 
+                             @if($errors->has('type'))
+                              <p class="help-block">
+                                  {{ $errors->first('type') }}
+                              </p>
+                          @endif
+                         
                           </div>
+                        </div>
                   </div>
               </div>
                 
-
                    <br><div class="row clearfix">
                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                          <label for="file_id">File</label>
+                          <label for="filename">File</label>
                       </div>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                           <div class="form-group">
                               <div class="form-line">
-                                  <input type="file" id="file_id" class="form-control">
-                              </div>
+                                  <input name="filename" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="" value="{{ old('filename') }}" required  placeholder="Choose Files"/> 
+                                  @if($errors->has('filename'))
+                                    <p class="help-block">
+                                        {{ $errors->first('filename') }}
+                                    </p>
+                                @endif    
+                                </div>
                           </div>
                       </div>
                   </div>
@@ -146,7 +158,7 @@
                     </div>
                  </div>
                     
-                    <br><div class="row clearfix">
+                  <div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4  col-sm-offset-4 col-xs-offset-5">
                         <input type="checkbox" id="is_completed" class="filled-in">
                         <label for="is_completed">Is Completed</label>
@@ -167,7 +179,7 @@
                         </div>
                     </div>
                  </div>
-                 <br><div class="row clearfix">
+                 <div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="instruction">Instruction</label>
                   </div>
@@ -186,17 +198,31 @@
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" placeholder=""  name="tags" id="tags" data-role="tagsinput" value="Amsterdam,Washington,Sydney,Beijing,Cairo" style="border: none !important;">
+                            <input type="text" placeholder=""  name="tags" id="tags" data-role="tagsinput" value="" style="border: none !important;">
+                          </div>
+                        </div>
+                  </div>
+              </div>
+               <div class="row clearfix">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                      <label for="amount">Amount</label>
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                     <div class="form-group">
+                          <div class="form-line">
+                            <input type="text" class="form-control" name="amount">
                           </div>
                         </div>
                   </div>
               </div>
                     
                   <br><div class="row clearfix">
-                      <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
-                          <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SAVE</button>
-                      </div>
-                  </div>
+                    <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
+                        <button type="submit" class="btn btn-lg btn-primary m-t-15 waves-effec " id="btnAddTask">SAVE</button>
+                        <button type="button" class="btn btn-default m-t-15 btn-lg" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -232,7 +258,12 @@
                     <div class="form-group">
                         <div class="form-line">
                             <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus placeholder="Enter Topic Title"> 
-
+                             @if($errors->has('title'))
+                              <p class="help-block">
+                                  {{ $errors->first('title') }}
+                              </p>
+                          @endif
+                         
                         </div>
                     </div>
                 </div>
