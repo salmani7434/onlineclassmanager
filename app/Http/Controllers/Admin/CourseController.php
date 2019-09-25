@@ -11,7 +11,7 @@ use App\Course;
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
-
+use DB; 
 use Illuminate\Support\Carbon;
 use DateTime;
 // use Symfony\Component\HttpFoundation\Response;
@@ -25,13 +25,34 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
         // abort_if(Gate::denies('course_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if(Auth::check()){
+            if (Auth::user()->isAdmin()){
+                $courses = Course::all();
+            }
+            else{
+                
+                $course_ids = array();
+                $current_user_id = Auth::user()->id;
+                $course_user = DB::select("SELECT * FROM course_user where user_id ='$current_user_id'  ");
+                foreach ($course_user as $key => $value) {
+                 array_push($course_ids,$value->course_id);
+                }
+                
+                 $courses = Course::whereIn('id', $course_ids)->get();
 
-        
-        $courses = Course::all();
+                // $courses = Auth::user()->courses(); 
+                // // foreach($courses as $course){
+                //     dd($courses);       
+                // // }       
+            }
+            
+        }
+       
 
         return view('admin.courses.index',compact(['courses']));
     }

@@ -30,8 +30,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/course/course-material','CourseMaterialController@index');
    
     //Topics
-    Route::resource('/admin/topic', 'CourseTopicController');
-    Route::POST('/admin/course/addTopic','CourseTopicController@addTopic');
+    Route::resource('/course/topic', 'CourseTopicController');
+    Route::POST('course/addTopic','CourseTopicController@addTopic');
+
+
+    //Tasks
+    Route::resource('/course/task', 'TaskController');
+    Route::POST('course/addTask','TaskController@addTask');
 
     //Profile
     Route::get('/profile','AdminController@profile');

@@ -531,7 +531,7 @@
              message.html('');
 
             $.ajax({
-                url:'/admin/addTopic',
+                url:'/admin/course/addTopic',
                 method: 'POST',
                 data: frm.serialize(),
                 error: function(){
@@ -564,6 +564,66 @@
         });
 
            $('#AddTopicsModal').on('hidden.bs.modal', function () {
+             location.reload();
+            });
+
+
+
+           // Task Module
+
+               $('.frmAddTask').on('submit',function(){
+                  event.preventDefault();
+
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+            var frm = $(this);
+
+            var btn = frm.find('#btnAddTask');
+            var message = $("#taskmessage");
+            btn.attr('disabled','disabled').attr('data-temp',btn.html()).html('Please wait...');
+             message.html('');
+
+            $.ajax({
+                url:'/admin/course/addTask',
+                method:"POST",
+               data:new FormData(this),
+               dataType:'JSON',
+               contentType: false,
+               cache: false,
+               processData: false,
+                error: function(){
+                    btn.removeAttr('disabled').html(btn.attr('data-temp'));
+                    message.html('<div class="alert alert-danger">Communication Error</div>');
+                },
+                success: function(data){
+                    btn.removeAttr('disabled').html(btn.attr('data-temp'));
+                        // $('#AddUserModal').modal('hide');
+                        console.log(data);
+                    if(data.status =='success'){
+                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                        $('#title').val('');
+
+                    }else{
+                        $.each(data.errors, function(key, value){
+                            $("#taskmessage").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
+                        });
+                     
+
+                    }
+ 
+                }
+            });
+
+            return false;
+ 
+
+
+        });
+
+           $('#AddTaskModal').on('hidden.bs.modal', function () {
              location.reload();
             });
 });

@@ -37,6 +37,11 @@
                     <span class="input-group-addon">Completion Date</span>
                     <div class="form-line">
                         <input type="text" id="completion_date" name="completion_date" class="form-control  {{ $errors->has('completion_date') ? ' is-invalid' : '' }}"  placeholder="Date end...">
+                        @if($errors->has('completion_date'))
+                              <p class="help-block">
+                                  {{ $errors->first('completion_date') }}
+                              </p>
+                          @endif
                     </div>
                 </div>
             </div>

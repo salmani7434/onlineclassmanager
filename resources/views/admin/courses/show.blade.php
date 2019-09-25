@@ -86,7 +86,9 @@
               <h4 class="modal-title">Add Task</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal frmAddTask"  method="POST" enctype="multipart/form-data">
+              <div id="taskmessage"></div>
+
+              <form class="form-horizontal frmAddTask"  enctype="multipart/form-data" method="post">
                       {{ csrf_field() }}
                   <div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
@@ -132,25 +134,31 @@
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                           <div class="form-group">
                               <div class="form-line">
-                                  <input name="filename" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="" value="{{ old('filename') }}" required  placeholder="Choose Files"/> 
-                                  @if($errors->has('filename'))
+                                <input type="file" name="filename[]" id="filename" multiple="multiple">
+                                  <!-- <input name="filename[]" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="multiple" value="{{ old('filename') }}" required  placeholder="Choose Files"/>  -->
+                                  <!-- @if($errors->has('filename'))
                                     <p class="help-block">
                                         {{ $errors->first('filename') }}
                                     </p>
-                                @endif    
+                                @endif   -->  
                                 </div>
                           </div>
                       </div>
                   </div>
                 <br><div class="row clearfix" style="margin-top: 10px;">
                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                        <label for="password_2">Due Date</label>
+                        <label for="due_date">Due Date</label>
                   </div>
                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                         <div class="form-group">
                             <div class="input-daterange input-group" id="bs_datepicker_range_container">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" placeholder="Due Date">
+                                    <input type="text" id="due_date" name="due_date" class="form-control  {{ $errors->has('due_date') ? ' is-invalid' : '' }}"  placeholder="Date end..." value="{{ old('due_date') }}">
+                                    @if($errors->has('due_date'))
+                                          <p class="help-block">
+                                              {{ $errors->first('due_date') }}
+                                          </p>
+                                      @endif
                                 </div>
                                 
                             </div>
@@ -160,8 +168,13 @@
                     
                   <div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4  col-sm-offset-4 col-xs-offset-5">
-                        <input type="checkbox" id="is_completed" class="filled-in">
+                        <input type="checkbox" id="is_completed" value="{{ old('is_completed') }}" name="is_completed" class="filled-in">
                         <label for="is_completed">Is Completed</label>
+                         @if($errors->has('is_completed'))
+                            <p class="help-block">
+                                {{ $errors->first('is_completed') }}
+                            </p>
+                        @endif
                     </div>
                 </div>
                 <br><div class="row clearfix" style="margin-top: 10px;">
@@ -172,7 +185,12 @@
                         <div class="form-group">
                             <div class="input-daterange input-group" id="bs_datepicker_range_container">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" placeholder="Completion Date">
+                                    <input type="text" id="completion_date" name="completion_date" class="form-control  {{ $errors->has('completion_date') ? ' is-invalid' : '' }}"  placeholder="Date end..." value="{{ old('completion_date') }}">
+                                  @if($errors->has('completion_date'))
+                                        <p class="help-block">
+                                            {{ $errors->first('completion_date') }}
+                                        </p>
+                                    @endif
                                 </div>
                                 
                             </div>
@@ -186,7 +204,12 @@
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" class="form-control" name="instruction">
+                            <input type="text" class="form-control  {{$errors->has('instruction') ? ' is-invalid' : '' }}"  placeholder="Enter Instruction" id="instruction" name="instruction" value="{{ old('instruction') }}">
+                            @if($errors->has('instruction'))
+                                <p class="help-block">
+                                    {{ $errors->first('instruction') }}
+                                </p>
+                            @endif
                           </div>
                         </div>
                   </div>
@@ -198,7 +221,12 @@
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" placeholder=""  name="tags" id="tags" data-role="tagsinput" value="" style="border: none !important;">
+                            <input type="text" placeholder=""  name="tags[]" id="tags" data-role="tagsinput" value="" value="{{ old('tags') }}">
+                            @if($errors->has('tags'))
+                                <p class="help-block">
+                                    {{ $errors->first('tags') }}
+                                </p>
+                            @endif
                           </div>
                         </div>
                   </div>
@@ -210,8 +238,12 @@
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                      <div class="form-group">
                           <div class="form-line">
-                            <input type="text" class="form-control" name="amount">
-                          </div>
+                              <input id="amount" type="text" class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}" required  placeholder="Enter Task Amount"> 
+                             @if($errors->has('amount'))
+                              <p class="help-block">
+                                  {{ $errors->first('amount') }}
+                              </p>
+                          @endif                          </div>
                         </div>
                   </div>
               </div>

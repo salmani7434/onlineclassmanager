@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->string('completion_date');
             $table->string('instruction');
             $table->float('amount');
+            $table->integer('added_by');
             $table->timestamps();
         });
     }

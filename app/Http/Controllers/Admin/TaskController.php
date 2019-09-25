@@ -2,9 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyUserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Role;
+use App\User;
+use App\Course;
+use App\Topic;
+use Gate;
+use Auth;
+use Illuminate\Http\Request;
 
+use Illuminate\Support\Carbon;
+use DateTime;
+// use Symfony\Component\HttpFoundation\Response;
+use Validator;
+use Response;
+use Illuminate\Support\Facades\Input;
 class TaskController extends Controller
 {
     /**
@@ -36,6 +51,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->all());
     }
 
     /**
@@ -82,9 +98,13 @@ class TaskController extends Controller
     {
         //
     }
-     public function activity_stream(){
-        
-        return view('admin.tasks.activity_stream');
+    public function addTask(Request $request){
+        // dd($request->all());$this->validate($request, [
 
+                'filename' => 'required',
+                'filename.*' => 'mimes:doc,pdf,docx,zip'
+
+]);
+        return response()->json(['status'=>'success' , 'message' =>'Task Added Successfully']);
     }
 }
