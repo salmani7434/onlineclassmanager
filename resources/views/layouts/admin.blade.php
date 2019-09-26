@@ -166,6 +166,9 @@ use Illuminate\Http\Request;
 #tags{
     border: none !important;
 }
+td > * {
+    vertical-align : middle;
+}
 </style>
 </head>
 

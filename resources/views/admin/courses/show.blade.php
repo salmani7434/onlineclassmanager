@@ -127,16 +127,16 @@
                   </div>
               </div>
                 
-                   <!-- <br><div class="row clearfix">
+                   <br><div class="row clearfix">
                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                           <label for="filename">File</label>
                       </div>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                           <div class="form-group">
                               <div class="form-line">
-                                <input type="file" name="filename[]" id="filename" multiple="multiple">
+                                
                                   <input name="filename[]" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="multiple" value="{{ old('filename') }}" required  placeholder="Choose Files"/> 
-                                  <!-- @if($errors->has('filename'))
+                                  @if($errors->has('filename'))
                                     <p class="help-block">
                                         {{ $errors->first('filename') }}
                                     </p>
@@ -144,25 +144,30 @@
                                 </div>
                           </div>
                       </div>
-                  </div> --> -->
+                  </div>
                 <br><div class="row clearfix" style="margin-top: 10px;">
                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                        <label for="due_date">Due Date</label>
+                        <label for="due_date">Choose Dates</label>
                   </div>
                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
-                        <div class="form-group">
-                            <div class="input-daterange input-group" id="bs_datepicker_range_container">
-                                <div class="form-line">
-                                    <input type="text" id="due_date" name="due_date" class="form-control  {{ $errors->has('due_date') ? ' is-invalid' : '' }}"  placeholder="Date end..." value="{{ old('due_date') }}">
-                                    @if($errors->has('due_date'))
-                                          <p class="help-block">
-                                              {{ $errors->first('due_date') }}
-                                          </p>
-                                      @endif
-                                </div>
-                                
-                            </div>
-                        </div>
+                         <div class="form-group">
+                          <div >
+                              <div class="input-daterange input-group" id="bs_datepicker_range_container">
+                                  <div class="form-line">
+                                      <input type="text" id="due_date" name="due_date" class="form-control {{ $errors->has('due_date') ? ' is-invalid' : '' }}" placeholder="Due Date..." >
+                                  </div>
+                                  <span class="input-group-addon">Completion Date</span>
+                                  <div class="form-line">
+                                      <input type="text" id="completion_date" name="completion_date" class="form-control  {{ $errors->has('completion_date') ? ' is-invalid' : '' }}"  placeholder="Completion Date...">
+                                      @if($errors->has('completion_date'))
+                                            <p class="help-block">
+                                                {{ $errors->first('completion_date') }}
+                                            </p>
+                                        @endif
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                  </div>
                     
@@ -181,27 +186,8 @@
                           </div>
                       </div>
                    </div>
-                <br><div class="row clearfix" style="margin-top: 10px;">
-                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                        <label for="completion_date">Completion Date</label>
-                  </div>
-                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
-                        <div class="form-group">
-                            <div class="input-daterange input-group" id="bs_datepicker_range_container">
-                                <div class="form-line">
-                                    <input type="text" id="completion_date" name="completion_date" class="form-control  {{ $errors->has('completion_date') ? ' is-invalid' : '' }}"  placeholder="Date end..." value="{{ old('completion_date') }}">
-                                  @if($errors->has('completion_date'))
-                                        <p class="help-block">
-                                            {{ $errors->first('completion_date') }}
-                                        </p>
-                                    @endif
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-                 <div class="row clearfix">
+               
+                 <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="instruction">Instruction</label>
                   </div>
@@ -218,7 +204,7 @@
                         </div>
                   </div>
               </div>
-              <!-- <br><div class="row clearfix">
+              <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="tags">Tags</label>
                   </div>
@@ -234,8 +220,8 @@
                           </div>
                         </div>
                   </div>
-              </div> -->
-               <div class="row clearfix">
+              </div>
+               <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="amount">Amount</label>
                   </div>

@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+
 <div class="container-fluid">
     <div class="text-right block-header">
         <a class="btn btn-success" href="#" data-toggle="modal" data-target="#AddCourseModal">
@@ -55,21 +56,25 @@
                             </tfoot>
                             <tbody id="courses">
                                @foreach($courses as $course)
-                                <tr  data-entry-id="{{ $course->id }}" id="course_{{ $course->id ?? '' }}">
+                                <tr  data-entry-id="{{ $course->id }}" id="course_{{ $course->id ?? '' }}" valign="middle">
                                     <td><a href="{{ route('admin.course.show', $course->id) }}"><strong>{{$course->id}}</strong></a></td>
                                     <td> 
                                         @foreach($course->users as $key => $item)
                                          
-                                            <span class="badge badge-info">{{ $item->fname." ".$item->lname }}</span>
+                                            <span class="badge bg-orange">{{ $item->fname." ".$item->lname }}</span>
                                         @endforeach
                                     </td>
                                     <td>{{$course->name}}</td>
                                     <td>
-                                       
-                                @foreach($course->topics as $key => $item)
-                                  
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
+                                       @if(count($course->topics) > 0)
+                                            @foreach($course->topics as $key => $item)
+                                              
+                                                <span class="badge bg-blue">{{ $item->title }}</span>
+                                            @endforeach
+                                        @else
+                                            <span class="badge bg-red">Not Added</span>
+
+                                        @endif
                                     </td>
 
                                     

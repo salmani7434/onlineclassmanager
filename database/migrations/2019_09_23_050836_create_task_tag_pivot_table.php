@@ -6,29 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTaskTagPivotTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
-        Schema::create('task_tag', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('task_task_tag', function (Blueprint $table) {
             $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->string('tagname');
             $table->timestamps();
+          
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('task_tag_pivot');
-    }
+   
 }

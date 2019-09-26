@@ -571,14 +571,14 @@
 
            // Task Module
 
-               $('.frmAddTask').on('submit',function(){
-                  event.preventDefault();
+           $('.frmAddTask').on('submit',function(){
+              event.preventDefault();
 
-               $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  }
-              });
+           $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
             var frm = $(this);
 
             var btn = frm.find('#btnAddTask');
@@ -605,6 +605,15 @@
                     if(data.status =='success'){
                          message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
 
+                         $("#title").val('');
+                         $("#type").val('');
+                         $("#filename").val('');
+                         $("#due_date").val('');
+                         $("#completion_date").val('');
+                         $("#instruction").val('');
+                         $("#tags").val('');
+                         $(".tag").remove();
+                         $("#amount").val('');
                     }else{
                         $.each(data.errors, function(key, value){
                             $("#taskmessage").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');

@@ -163,6 +163,19 @@ class TaskController extends Controller
                     $task->topics()->sync($topic_id, []);
                     $task->courses()->sync($course_id, []);
                     $task->users()->sync($userId, []);
+                    
+                    $tag_array = array();
+                    foreach ($data['tags'] as $key => $value) {
+                       $tag_array = explode(",",$value);
+                    }
+                    foreach ($tag_array as $key1 => $value1) {
+                        $tasktag = new TaskTag();
+                        $tasktag->task_id = $task->id;
+                        $tasktag->tagname = $value1;
+                        $tasktag->save();
+                    }
+                    // $task->tags()->sync( $tag_array);
+
 
                   return response()->json(['task'=>$task ,'status'=>'success' , 'message' =>'Task Added Successfully']);
 
