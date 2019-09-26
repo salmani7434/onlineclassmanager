@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     //Tasks
     Route::resource('/course/task', 'TaskController');
     Route::POST('course/addTask','TaskController@addTask');
+    Route::POST('course/TaskDetail','TaskController@TaskDetail');
+
+
 
     //Profile
     Route::get('/profile','AdminController@profile');

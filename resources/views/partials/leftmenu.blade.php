@@ -55,7 +55,7 @@
                             <ul class="ml-menu">
                             @foreach($item->tasks as $key1 => $item1)
                                 <li class="">
-                                    <a href="javascript:void(0);" class="topic-task-link">
+                                    <a href="javascript:void(0);" class="topic-task-link" data-id="{{$item1->id}}">
                                         <span>{{$item1->title}}</span>
                                     </a>
                                     

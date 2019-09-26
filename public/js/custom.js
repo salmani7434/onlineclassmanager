@@ -91,8 +91,8 @@
             var r = btn.data('roles');
             var roles = r.split(',');
             var r_id = btn.data('roles-id');
-            // var roles_id = r_id.split(',');
-
+            var roles_id = r_id.split(',');
+            console.log(r_id);
             var status = btn.data('status');
             var phone = btn.data('phone');
             var uni = btn.data('uni');
@@ -104,7 +104,7 @@
             modal.find('.modal-body #phone').val(phone);
             modal.find('.modal-body #university').val(uni);
             modal.find('.modal-body #status').val(status);
-            // modal.find('.modal-body #roles').val(roles_id);
+            modal.find('.modal-body #roles').val(roles_id);
 
             if(status == 0){
               $('.status-group').find(' .filter-option').text('Inactives') ;
@@ -171,15 +171,7 @@
                           $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
                          // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#fname').val('');
-                        $('#lname').val('');
-                        $('#email').val('');
-                        $('#phone').val('');
-                        $('#university').val('');
-                        $('#password').val('');
-                        $('#status').val(1);
-                        $('#roles').val(0);
-                        $('.filter-option').remove();
+                           $('.frmAdduser')[0].reset();
 
 
                     }else{
@@ -196,7 +188,6 @@
             });
 
             return false;
-            $('.frmAdduser')[0].reset();
 
 
         });
@@ -211,7 +202,7 @@
          $('.frmEditUser').on('submit',function(){
             var frm = $(this);
             var btn = frm.find('#btnEditUser');
-            var message = $("#message1");
+            var message = $("#message");
             btn.attr('disabled','disabled').attr('data-temp',btn.html()).html('Please wait...');
              message.html('');
 
@@ -236,23 +227,14 @@
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                         // $('#AddUserModal').modal('hide');
                         // console.log(data);
-                    if(data.status =='success'){
+                     if(data.status =='success'){
                       $('.progress-bar').text('Edited');
                           $('.progress-bar').css('width', '100%');
-                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                          $('#success1').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
                          // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#fname').val('');
-                        $('#lname').val('');
-                        $('#email').val('');
-                        $('#phone').val('');
-                        $('#university').val('');
-                        $('#password').val('');
-                        $('#status').val(1);
-                        $('#roles').val(0);
-
-
-
+                        
+                          $('.frmEditUser')[0].reset();
                     }else{
                         $.each(data.errors, function(key, value){
                         $('.progress-bar').text('0%');
@@ -267,7 +249,7 @@
             });
 
             return false;
-            $('.frmEditUser')[0].reset();
+            
 
 
         });
@@ -361,20 +343,13 @@
                           $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
                          // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#name').val('');
-                        $('#subject').val('');
-                        $('#start_date').val('');
-                        $('#phone').val('');
-                        $('#start_date').val('');
-                        $('#completion_date').val('');
-                        $('#course_objectives').val('');
-                        $('#setup').val(1);
-                        $('#is_important').prop( "checked", false );
+                          $('.frmAddCourse')[0].reset();
+
 
                     }else{
                         $.each(data.errors, function(key, value){
-  $('.progress-bar').text('0%');
-          $('.progress-bar').css('width', '0%');
+                        $('.progress-bar').text('0%');
+                                $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                      
@@ -491,15 +466,7 @@
                           $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
                          // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#name').val('');
-                        $('#subject').val('');
-                        $('#start_date').val('');
-                        $('#phone').val('');
-                        $('#start_date').val('');
-                        $('#completion_date').val('');
-                        $('#course_objectives').val('');
-                        $('#setup').val(1);
-                        $('#is_important').prop( "checked", false );
+                        $('.frmEditCourse')[0].reset();
 
                     }else{
                         $.each(data.errors, function(key, value){
@@ -614,12 +581,12 @@
                           $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
                          // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#topictitle').val('');
+                        $('.frmAddTopic')[0].reset();
 
                     }else{
                         $.each(data.errors, function(key, value){
-  $('.progress-bar').text('0%');
-          $('.progress-bar').css('width', '0%');
+                        $('.progress-bar').text('0%');
+                                $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                      
@@ -689,14 +656,9 @@
                           $('.progress-bar').css('width', '100%');
                           $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                          
-                         $("#title").val('');
-                         $("#type").val('');
-                         $("#filename").val('');
-                         $("#due_date").val('');
-                         $("#completion_date").val('');
-                         $("#instruction").val('');
-                         $("#title").val('');
-                         $("#title").val('');
+                          $('.frmAddTask')[0].reset();
+                          $('#tags').remove();
+
                     }else{
                         $.each(data.errors, function(key, value){
                       $('.progress-bar').text('0%');
@@ -730,4 +692,35 @@
               
                 $('#topic_id_hidden').val(topic_id);
            });
+
+
+
+
+            $(".topic-task-link").on('click',function(){
+                  event.preventDefault();
+
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+              var task_id = $(this).attr('data-id');
+              
+                $.ajax({
+                url:'/admin/course/TaskDetail',
+                 type: "post",
+                data: {task_id:task_id},
+               cache: false,
+                error: function(){
+                    alert('Communication Error');
+                },
+                success: function(data){
+                  console.log(data);
+                }
+
+            });
+
+            return false;
+           });
+            
 });

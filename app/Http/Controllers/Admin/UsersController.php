@@ -117,7 +117,7 @@ class UsersController extends Controller
             $data = ($request->input());
             $user_email = $data['email'];
             $user = User::where('email', '=', $user_email)->firstOrFail();
-          $rules = array(
+            $rules = array(
             'fname'      => 'required | string | min:3 | max :100 |',
             'lname'      => 'required | string | min:3 | max :100 |',
             'email'      => 'required | string | email | max:255 | unique:users,email,'.$user->id,

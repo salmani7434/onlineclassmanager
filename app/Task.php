@@ -9,6 +9,8 @@ use Laravel\Passport\HasApiTokens;
 use App\Course;
 use App\Topic;
 use App\TaskTag;
+use App\TaskFile;
+
 class Task extends Model
 {
     //
@@ -40,6 +42,10 @@ class Task extends Model
    public function topics()
     {
         return $this->belongsToMany(Topic::class);
+    }
+    public function files()
+    {
+        return $this->belongsToMany(TaskFile::class);
     }
      public function tags()
     {

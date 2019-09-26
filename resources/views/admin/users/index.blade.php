@@ -189,15 +189,15 @@
           <h4 class="modal-title">Add User</h4>
         </div>
         <div class="modal-body">
-        <div id="message1"></div>
-          <div class="progress">
+        <div id="message"></div>
+              <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow=""
                   aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                     0%
                   </div>
                 </div>
                 <br />
-                <div id="success">
+                <div id="success1">
 
                 </div>
           <form class="form-horizontal frmEditUser"  method="POST" enctype="multipart/form-data">

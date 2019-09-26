@@ -335,7 +335,7 @@
 
    <!-- Add Course Material Modal -->
       <div id="AddCourseMaterialModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+      <div class="modal-dialog" style="width: 60% !important;">
 
           <!-- Modal content-->
           <div class="modal-content">
@@ -347,10 +347,10 @@
               <form class="form-horizontal" enctype="multipart/form-data">
 
                    <br><div class="row clearfix">
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
                       <label for="file_name">Description</label>
                   </div>
-                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                      <div class="form-group">
                           <div class="form-line">
                               <textarea name="content" id="editor">
@@ -361,10 +361,10 @@
                   </div>
               </div>
                   <br><div class="row clearfix">
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
                       <label for="file_name">Select Files</label>
                   </div>
-                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                      <div class="form-group">
                           <div class="form-line">
                               <input name="filesToUpload[]" id="filesToUpload" class="form-control" type="file" multiple="" />
@@ -376,15 +376,15 @@
                   
                     
                   <br><div class="row clearfix">
-                      <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-5">
-                          <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SAVE</button>
-                      </div>
-                  </div>
+                    <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
+                        <button type="submit" class="btn btn-lg btn-primary m-t-15 waves-effec " id="btnAddTopic">SAVE</button>
+                        <button type="button" class="btn btn-default m-t-15 btn-lg" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+           
           </div>
 
         </div>

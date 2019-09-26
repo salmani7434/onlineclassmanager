@@ -12,6 +12,7 @@ use App\Course;
 use App\Topic;
 use App\Task;
 use App\TaskTag;
+use App\TaskFile;
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
@@ -148,7 +149,6 @@ class TaskController extends Controller
         }
          else {
                     $data = $request->input();
-
                     $task = new Task();
                     $task->title = $data['title'];
                     $task->type = $data['type'];
@@ -174,12 +174,41 @@ class TaskController extends Controller
                         $tasktag->tagname = $value1;
                         $tasktag->save();
                     }
+
+                    if($request->hasfile('filename'))
+                     {
+
+                        foreach($request->file('filename') as $file)
+                        {
+                            $name=$file->getClientOriginalName();
+                            $file->move(public_path().'/files/', $name);  
+                            $filedata[] = $name;  
+                        }
+                     }
+                      foreach ($filedata as $key2 => $value2) {
+                        $taskfile = new TaskFile();
+                        $taskfile->task_id = $task->id;
+                        $taskfile->filename = $value2;
+                        $taskfile->save();
+                    }
                     // $task->tags()->sync( $tag_array);
 
 
                   return response()->json(['task'=>$task ,'status'=>'success' , 'message' =>'Task Added Successfully']);
 
         }
+
+    }
+
+    public function TaskDetail(Request $request){
+
+        $data = $request->all();
+
+         $task = Task::where(['id'=> $data['task_id']])->first();
+         $files = TaskFile::where(['task_id'=> $data['task_id']])->get();
+        $tags = TaskTag::where(['task_id'=>$data['task_id']])->get();
+         return response()->json(['data'=>$task , 'files'=> $files, 'tags'=> $tags ]);
+
 
     }
 }

@@ -24,41 +24,36 @@
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                    <th>Suspended</th>
-                                    <th>Phone</th>
-                                    <th>Country</th>
-                                    <th>Created At</th>
-                                    <th>Referred By</th>
-                                    <th>Referral Points</th>
-                                    <th>University Name</th>
-                          
-                                    <th width="50">Action</th>
+                                    <th width="10">
+
+                                    </th>
+                                    <th>
+                                        First Name
+                                    </th>
+                                    <th>
+                                        Last Name
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.user.fields.email') }}
+                                    </th>
+                                    
+                                    <th>
+                                        {{ trans('cruds.user.fields.roles') }}
+                                    </th>
+                                    <th>
+                                        Phone Number
+                                    </th>
+                                    <th>
+                                        Univerty
+                                    </th>
+                                    <th>Status</th>
+                                    <th>
+                                        Actions
+                                    </th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                    <th>Suspended</th>
-                                    <th>Phone</th>
-                                    <th>Country</th>
-                                    <th>Created At</th>
-                                    <th>Referred By</th>
-                                    <th>Referral Points</th>
-                                    <th>University Name</th>
-                                  
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
+                           
+                            <tbody id="users">
                                
                                 <tr>
                                     <td><a href="">1</a></td>

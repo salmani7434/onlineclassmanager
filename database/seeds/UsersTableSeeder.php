@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder
         $users = [[
             'id'             => 1,
             'fname'          => 'Admin',
-            'lname'          => 'Gee',
+            'lname'          => 'Admin',
             'email'          => 'admin@admin.com',
             'password'       => '$2y$10$2Zup/OQMmjEQF0I4KGUqbeNC.cHrsGRwafZOqNNpf3jN3ZAHO3FdG',
             'phone'          => '123456789',
