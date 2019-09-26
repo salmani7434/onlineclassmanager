@@ -18,12 +18,13 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->string('type');
             $table->string('due_date');
-            $table->boolean('is_complete')->nullable()->default(false);
+            $table->boolean('is_completed')->nullable()->default(false);
             $table->string('completion_date');
             $table->string('instruction');
             $table->float('amount');
-            $table->integer('added_by');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

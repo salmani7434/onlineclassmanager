@@ -10,6 +10,8 @@ use App\Role;
 use App\User;
 use App\Course;
 use App\Topic;
+use App\Task;
+use App\TaskTag;
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
@@ -98,13 +100,73 @@ class TaskController extends Controller
     {
         //
     }
+      public function addTopic(Request $request){
+
+        $userId = Auth::id();
+           $rules = array(
+            'title'              => 'required | string | min:3 | max :100 | unique:tasks',
+            'type'              => 'required | string | min:3 | max :100',
+            'due_date'          => 'required ',
+            'completion_date'  => 'required',
+            'instruction'       => 'required',
+            'amount'             => 'required',          );
+        $validator = Validator::make ( Input::all(), $rules);
+        if ($validator->fails()){
+            return Response::json(array('errors'=> $validator->getMessageBag()->toarray()));
+        }
+
+        else {
+            $data = $request->input();
+            dd($data);
+            $topic = new Topic();
+            $topic->title = $data['title'];
+            $topic->save();
+            $course_id = $data['course_id'];
+            $topic->courses()->sync($course_id, []);
+            $topic->users()->sync($userId, []);
+            // return redirect()->route('admin.users.index')->withSuccess(['User Added Successfully']);
+          return response()->json(['topic'=>$topic ,'status'=>'success' , 'message' =>'Course Added Successfully']);
+      }
+
+    }
     public function addTask(Request $request){
-        // dd($request->all());$this->validate($request, [
+                $userId = Auth::id();
 
-                'filename' => 'required',
-                'filename.*' => 'mimes:doc,pdf,docx,zip'
+        $rules = array(
+            'title'              => 'required | string | min:3 | max :100 | unique:tasks',
+            'type'              => 'required',
+            'due_date'          => 'required ',
+            'completion_date'  => 'required',
+            'instruction'       => 'required',
+            'amount'             => 'required',          
+        );
 
-]);
-        return response()->json(['status'=>'success' , 'message' =>'Task Added Successfully']);
+         $validator = Validator::make ( Input::all(), $rules);
+        
+        if ($validator->fails()){
+            return Response::json(array('errors'=> $validator->getMessageBag()->toarray()));
+        }
+         else {
+                    $data = $request->input();
+
+                    $task = new Task();
+                    $task->title = $data['title'];
+                    $task->type = $data['type'];
+                    $task->due_date = $data['due_date'];
+                    $task->is_completed = $data['is_completed'];
+                    $task->completion_date = $data['completion_date'];
+                    $task->instruction = $data['instruction'];
+                    $task->amount = $data['amount'];
+                    $task->save();
+                    $course_id = $data['course_id'];
+                    $topic_id = $data['topic_id'];
+                    $task->topics()->sync($topic_id, []);
+                    $task->courses()->sync($course_id, []);
+                    $task->users()->sync($userId, []);
+
+                  return response()->json(['task'=>$task ,'status'=>'success' , 'message' =>'Task Added Successfully']);
+
+        }
+
     }
 }

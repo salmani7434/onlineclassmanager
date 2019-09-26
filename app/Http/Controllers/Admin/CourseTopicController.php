@@ -99,7 +99,7 @@ class CourseTopicController extends Controller
     }
      public function addTopic(Request $request){
 
-
+        $userId = Auth::id();
           $rules = array(
             'title'  => 'required | string | min:3 | max :100 | unique:topics',
                    );
@@ -115,7 +115,7 @@ class CourseTopicController extends Controller
             $topic->save();
             $course_id = $data['course_id'];
             $topic->courses()->sync($course_id, []);
-
+            $topic->users()->sync($userId, []);
             // return redirect()->route('admin.users.index')->withSuccess(['User Added Successfully']);
           return response()->json(['topic'=>$topic ,'status'=>'success' , 'message' =>'Course Added Successfully']);
       }

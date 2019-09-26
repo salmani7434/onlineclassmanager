@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Course;
 use App\Topic;
+use App\TaskTag;
 class Task extends Model
 {
     //
@@ -15,34 +16,33 @@ class Task extends Model
     //
 	 use SoftDeletes, Notifiable, HasApiTokens;
 
-    public $table = 'tasks';
+     public $table = 'tasks';
 
- 
+    protected $casts = [
+        'is_completed' => 'boolean',
+    ];
     protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
-        'due_date',
-        'completion_date',
     ];
 
-    protected $fillable = [
-        'title',
-        'type',
-        'due_date',
-        'completion_date',
-        'is_complete',
-        'instruction',
-        'amout',
-        
-    ];
+    protected $guarded  = [];
 
     public function courses()
     {
         return $this->belongsToMany(Course::class);
     }
-    public function topics()
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+   public function topics()
     {
         return $this->belongsToMany(Topic::class);
+    }
+     public function tags()
+    {
+        return $this->belongsToMany(TaskTag::class);
     }
 }

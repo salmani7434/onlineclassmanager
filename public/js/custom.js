@@ -544,7 +544,7 @@
                         // console.log(data);
                     if(data.status =='success'){
                          message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#title').val('');
+                        $('#topictitle').val('');
 
                     }else{
                         $.each(data.errors, function(key, value){
@@ -601,10 +601,9 @@
                 success: function(data){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                         // $('#AddUserModal').modal('hide');
-                        console.log(data);
+                       
                     if(data.status =='success'){
                          message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                        $('#title').val('');
 
                     }else{
                         $.each(data.errors, function(key, value){
@@ -626,4 +625,15 @@
            $('#AddTaskModal').on('hidden.bs.modal', function () {
              location.reload();
             });
+
+           $(".course-topic-link").on('click',function(){
+              var topic_id = $(this).attr('data-id');
+              
+               $('.add-course-tasks').attr('data-id', topic_id);
+           });
+            $(".add-course-tasks").on('click',function(){
+              var topic_id = $(this).attr('data-id');
+              
+                $('#topic_id_hidden').val(topic_id);
+           });
 });

@@ -49,4 +49,8 @@ class Course extends Model
     {
         return $this->belongsToMany(Topic::class);
     }
+     public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
 }

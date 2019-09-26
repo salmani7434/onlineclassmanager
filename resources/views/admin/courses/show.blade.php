@@ -127,7 +127,7 @@
                   </div>
               </div>
                 
-                   <br><div class="row clearfix">
+                   <!-- <br><div class="row clearfix">
                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                           <label for="filename">File</label>
                       </div>
@@ -135,16 +135,16 @@
                           <div class="form-group">
                               <div class="form-line">
                                 <input type="file" name="filename[]" id="filename" multiple="multiple">
-                                  <!-- <input name="filename[]" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="multiple" value="{{ old('filename') }}" required  placeholder="Choose Files"/>  -->
+                                  <input name="filename[]" id="filename" class="form-control {{ $errors->has('filename') ? ' is-invalid' : '' }}" type="file" multiple="multiple" value="{{ old('filename') }}" required  placeholder="Choose Files"/> 
                                   <!-- @if($errors->has('filename'))
                                     <p class="help-block">
                                         {{ $errors->first('filename') }}
                                     </p>
-                                @endif   -->  
+                                @endif    
                                 </div>
                           </div>
                       </div>
-                  </div>
+                  </div> --> -->
                 <br><div class="row clearfix" style="margin-top: 10px;">
                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                         <label for="due_date">Due Date</label>
@@ -166,17 +166,21 @@
                     </div>
                  </div>
                     
-                  <div class="row clearfix">
-                    <div class="col-lg-offset-4 col-md-offset-4  col-sm-offset-4 col-xs-offset-5">
-                        <input type="checkbox" id="is_completed" value="{{ old('is_completed') }}" name="is_completed" class="filled-in">
-                        <label for="is_completed">Is Completed</label>
-                         @if($errors->has('is_completed'))
-                            <p class="help-block">
-                                {{ $errors->first('is_completed') }}
-                            </p>
-                        @endif
+                  <br><div class="row clearfix">
+                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                          <label for="is_completed">Is Completed</label>
                     </div>
-                </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                          <div class="form-group is_completed_div">
+                             <div >
+                              <select class="form-control show-tick is_completed" name="is_completed" id="is_completed">
+                                  <option value="1">Yes</option>
+                                  <option value="0">No</option>
+                              </select>
+                             </div>
+                          </div>
+                      </div>
+                   </div>
                 <br><div class="row clearfix" style="margin-top: 10px;">
                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                         <label for="completion_date">Completion Date</label>
@@ -214,7 +218,7 @@
                         </div>
                   </div>
               </div>
-              <br><div class="row clearfix">
+              <!-- <br><div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="tags">Tags</label>
                   </div>
@@ -230,7 +234,7 @@
                           </div>
                         </div>
                   </div>
-              </div>
+              </div> -->
                <div class="row clearfix">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
                       <label for="amount">Amount</label>
@@ -243,13 +247,17 @@
                               <p class="help-block">
                                   {{ $errors->first('amount') }}
                               </p>
-                          @endif                          </div>
+                          @endif                          
+                        </div>
                         </div>
                   </div>
               </div>
                     
                   <br><div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
+                       <input type="hidden" name="course_id" id="course_id" value="{{$course->id}}">
+                         <input type="hidden" name="topic_id" id="topic_id_hidden" value="">
+
                         <button type="submit" class="btn btn-lg btn-primary m-t-15 waves-effec " id="btnAddTask">SAVE</button>
                         <button type="button" class="btn btn-default m-t-15 btn-lg" data-dismiss="modal">Close</button>
 
@@ -289,7 +297,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                     <div class="form-group">
                         <div class="form-line">
-                            <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus placeholder="Enter Topic Title"> 
+                            <input id="topictitle" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus placeholder="Enter Topic Title"> 
                              @if($errors->has('title'))
                               <p class="help-block">
                                   {{ $errors->first('title') }}

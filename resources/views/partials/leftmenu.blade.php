@@ -45,29 +45,22 @@
                             <span>{{$course->name}} Material</span>
                         </a>
                     </li>
-
                      @foreach($course->topics as $key => $item)
                         <li class="">
 
-                            <a href="javascript:void(0);" class="menu-toggle course-topic-link">
+                            <a href="javascript:void(0);" data-id="{{$item->id}}" class="menu-toggle course-topic-link">
                                 <i class="material-icons">assignment_turned_in</i>
                                 <span>{{$item->title}}</span>
                             </a>
                             <ul class="ml-menu">
-
-                               
+                            @foreach($item->tasks as $key1 => $item1)
                                 <li class="">
                                     <a href="javascript:void(0);" class="topic-task-link">
-                                        <span>Task 2</span>
+                                        <span>{{$item1->title}}</span>
                                     </a>
                                     
                                 </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="topic-task-link">
-                                        <span>Task 3</span>
-                                    </a>
-                                    
-                                </li>
+                                @endforeach
                             </ul>
                         </li>
                         @endforeach

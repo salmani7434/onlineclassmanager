@@ -31,8 +31,12 @@ class Topic extends Model
     {
         return $this->belongsToMany(Course::class);
     }
-    public function tasks()
+     public function tasks()
     {
         return $this->belongsToMany(Task::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

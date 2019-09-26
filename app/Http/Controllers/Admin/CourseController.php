@@ -45,10 +45,7 @@ class CourseController extends Controller
                 
                  $courses = Course::whereIn('id', $course_ids)->get();
 
-                // $courses = Auth::user()->courses(); 
-                // // foreach($courses as $course){
-                //     dd($courses);       
-                // // }       
+                    
             }
             
         }
