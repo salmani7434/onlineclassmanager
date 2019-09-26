@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Role;
 
 class WriterController extends Controller
 {
@@ -15,7 +17,10 @@ class WriterController extends Controller
     public function index()
     {
         //
-        return view('admin.writers.index');
+         $users = User::whereHas('roles', function($q){$q->where('title', 'Writer');})->get();
+                 $roles = Role::all()->pluck('title', 'id');
+
+        return view('admin.writers.index',compact(['users','roles']));
     }
 
     /**

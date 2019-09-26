@@ -91,7 +91,12 @@
             var r = btn.data('roles');
             var roles = r.split(',');
             var r_id = btn.data('roles-id');
-            var roles_id = r_id.split(',');
+            if(Array.isArray(r_id)){
+                var roles_id = r_id.split(',');
+            }
+            else{
+              var roles_id = r_id;
+            }
             console.log(r_id);
             var status = btn.data('status');
             var phone = btn.data('phone');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Role;
 
 class EditorController extends Controller
 {
@@ -15,9 +17,11 @@ class EditorController extends Controller
     public function index()
     {
         //
-        return view('admin.editors.index');
-    }
+        $users = User::whereHas('roles', function($q){$q->where('title', 'Editor');})->get();
+                 $roles = Role::all()->pluck('title', 'id');
 
+        return view('admin.editors.index',compact(['users','roles']));
+    }
     /**
      * Show the form for creating a new resource.
      *

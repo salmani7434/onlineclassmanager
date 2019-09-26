@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\User;
+use App\Role;
 class CustomerController extends Controller
 {
     /**
@@ -15,8 +16,9 @@ class CustomerController extends Controller
     public function index()
     {
         //
-
-        return view('admin.customers.index');
+        $users = User::whereHas('roles', function($q){$q->where('title', 'Customer');})->get();
+        $roles = Role::all()->pluck('title', 'id');
+        return view('admin.customers.index',compact(['users','roles']));
     }
 
     /**
