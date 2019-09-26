@@ -141,7 +141,16 @@
         </div>
         <div class="modal-body">
             <div id="message"></div>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow=""
+                  aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    0%
+                  </div>
+                </div>
+                <br />
+                <div id="success">
 
+                </div>
           <form class="form-horizontal frmAdduser"  method="POST" enctype="multipart/form-data">
             @csrf
             
@@ -149,7 +158,7 @@
                 
                 <br><div class="row clearfix">
                     <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-5">
-                        <button type="submit" class="btn btn-danger"  id="btnEditUser">
+                        <button type="submit" class="btn btn-danger"  id="btnAddUser">
                             Save
                         </button>
                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
@@ -181,7 +190,16 @@
         </div>
         <div class="modal-body">
         <div id="message1"></div>
+          <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow=""
+                  aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    0%
+                  </div>
+                </div>
+                <br />
+                <div id="success">
 
+                </div>
           <form class="form-horizontal frmEditUser"  method="POST" enctype="multipart/form-data">
             @csrf
             

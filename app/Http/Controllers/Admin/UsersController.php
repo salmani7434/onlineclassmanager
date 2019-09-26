@@ -124,8 +124,7 @@ class UsersController extends Controller
             'password'   => 'required | string | min:8 ',
             'phone'      => 'required',
             'university' => 'required | min:5',
-            'roles.*'    => 'integer',
-            'roles'      => 'required | array',
+            
             'phone'      => 'required',
             'status'     => 'required'
           );

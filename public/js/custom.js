@@ -91,7 +91,7 @@
             var r = btn.data('roles');
             var roles = r.split(',');
             var r_id = btn.data('roles-id');
-            var roles_id = r_id.split(',');
+            // var roles_id = r_id.split(',');
 
             var status = btn.data('status');
             var phone = btn.data('phone');
@@ -104,7 +104,7 @@
             modal.find('.modal-body #phone').val(phone);
             modal.find('.modal-body #university').val(uni);
             modal.find('.modal-body #status').val(status);
-            modal.find('.modal-body #roles').val(roles_id);
+            // modal.find('.modal-body #roles').val(roles_id);
 
             if(status == 0){
               $('.status-group').find(' .filter-option').text('Inactives') ;
@@ -148,7 +148,16 @@
                 url:'addUser',
                 method: 'POST',
                 data: frm.serialize(),
-                error: function(){
+                
+                beforeSend:function(){
+                      $('#success').empty();
+                    },
+                    uploadProgress:function(event, position, total, percentComplete)
+                    {
+                      $('.progress-bar').text(percentComplete + '%');
+                      $('.progress-bar').css('width', percentComplete + '%');
+                    },
+                    error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
                 },
@@ -157,7 +166,11 @@
                         // $('#AddUserModal').modal('hide');
                         // console.log(data);
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                      $('.progress-bar').text('Added');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                         $('#fname').val('');
                         $('#lname').val('');
                         $('#email').val('');
@@ -166,39 +179,16 @@
                         $('#password').val('');
                         $('#status').val(1);
                         $('#roles').val(0);
+                        $('.filter-option').remove();
 
-                    //     var sts = '';
-                    //     if(data.user.status == 1){
-                    //         sts = '<span class="badge bg-green">Active</span>';
-                    //     }
-                    //     else{
-                    //         sts = '<span class="badge bg-red">Inactive</span>';
-                    //     }
-                    //     var url      = window.location.href;
-                    //     var roles_content = '<a href="'+url+'">Reload</a>';
-
-                    //     var viewBtn = '<a class="btn btn-xs btn-primary" href="'+url+'/'+data.user.id+'" style="margin-bottom:5px">View</a>&nbsp;&nbsp;';
-                    //     var editBtn = '<a class="btn btn-xs btn-info" href="'+url+'/'+data.user.id+'/edit" style="margin-bottom:5px">Edit</a>';
-                    // $('.usersTable').append("<tr data-entry-id='" + data.user.id + "'>"+
-                    //   "<td>" + data.user.id + "</td>"+
-                    //   "<td>" + data.user.fname + "</td>"+
-                    //   "<td>" + data.user.lname + "</td>"+
-                    //   "<td>" + data.user.email + "</td>"+
-                    //   "<td>" + roles_content + "</td>"+
-                    //   "<td>" + data.user.phone + "</td>"+
-                    //   "<td>" + data.user.university + "</td>"+
-                    //   "<td>" + sts + "</td>"+
-                    //   "<td>" + viewBtn+editBtn+"</td>"
-                    //   +
-                    //   "</tr>");
 
                     }else{
                         $.each(data.errors, function(key, value){
+                        $('.progress-bar').text('0%');
+                                $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
-                         // message.html('<div class="alert bg-red alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.errors.fname+'<br>'+data.errors.lname+'<br>'
-                         //    +data.errors.email+'<br>'+data.errors.roles+'<br>'+data.errors.password+'<br>'+data.errors.status
-                         //    +'<br>'+data.errors.university+'<br>'+data.errors.phone+'</div>');
+                        
 
                     }
  
@@ -229,15 +219,30 @@
                 url:'editUser',
                 method: 'POST',
                 data: frm.serialize(),
-                error: function(){
+                
+              beforeSend:function(){
+                    $('#success').empty();
+                  },
+                  uploadProgress:function(event, position, total, percentComplete)
+                  {
+                    $('.progress-bar').text(percentComplete + '%');
+                    $('.progress-bar').css('width', percentComplete + '%');
+                  },
+                  error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
                 },
                 success: function(data){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
+                        // $('#AddUserModal').modal('hide');
+                        // console.log(data);
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-                         $('#fname').val('');
+                      $('.progress-bar').text('Edited');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                        $('#fname').val('');
                         $('#lname').val('');
                         $('#email').val('');
                         $('#phone').val('');
@@ -245,13 +250,16 @@
                         $('#password').val('');
                         $('#status').val(1);
                         $('#roles').val(0);
+
+
+
                     }else{
                         $.each(data.errors, function(key, value){
+                        $('.progress-bar').text('0%');
+                                $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
-                         // message.html('<div class="alert bg-red alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.errors.fname+'<br>'+data.errors.lname+'<br>'
-                         //    +data.errors.email+'<br>'+data.errors.roles+'<br>'+data.errors.password+'<br>'+data.errors.status
-                         //    +'<br>'+data.errors.university+'<br>'+data.errors.phone+'</div>');
+                        
 
                     }
  
@@ -285,7 +293,16 @@
                 type: 'POST',
                  data:{'user_id': user_id }, 
 
-                error: function(){
+                
+  beforeSend:function(){
+        $('#success').empty();
+      },
+      uploadProgress:function(event, position, total, percentComplete)
+      {
+        $('.progress-bar').text(percentComplete + '%');
+        $('.progress-bar').css('width', percentComplete + '%');
+      },
+      error: function(){
                         btn.removeAttr('disabled').html(btn.attr('data-temp'));
                         message.html('<div class="alert alert-danger">Communication Error</div>');
                     },
@@ -321,6 +338,15 @@
                 url:'addCourse',
                 method: 'POST',
                 data: frm.serialize(),
+                
+              beforeSend:function(){
+                    $('#success').empty();
+                  },
+                  uploadProgress:function(event, position, total, percentComplete)
+                  {
+                    $('.progress-bar').text(percentComplete + '%');
+                    $('.progress-bar').css('width', percentComplete + '%');
+                  },
                 error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
@@ -330,7 +356,11 @@
                         // $('#AddUserModal').modal('hide');
                         // console.log(data);
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                      $('.progress-bar').text('Added');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                         $('#name').val('');
                         $('#subject').val('');
                         $('#start_date').val('');
@@ -343,6 +373,8 @@
 
                     }else{
                         $.each(data.errors, function(key, value){
+  $('.progress-bar').text('0%');
+          $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                      
@@ -438,14 +470,27 @@
                 url:'editCourse',
                 method: 'POST',
                 data: frm.serialize(),
-                error: function(){
+                
+                beforeSend:function(){
+                      $('#success').empty();
+                    },
+                    uploadProgress:function(event, position, total, percentComplete)
+                    {
+                      $('.progress-bar').text(percentComplete + '%');
+                      $('.progress-bar').css('width', percentComplete + '%');
+                    },
+                    error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
                 },
                 success: function(data){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                      $('.progress-bar').text('Edited');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                         $('#name').val('');
                         $('#subject').val('');
                         $('#start_date').val('');
@@ -458,6 +503,8 @@
 
                     }else{
                         $.each(data.errors, function(key, value){
+                        $('.progress-bar').text('0%');
+                          $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                          // message.html('<div class="alert bg-red alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.errors.fname+'<br>'+data.errors.lname+'<br>'
@@ -487,7 +534,16 @@
                 type: 'POST',
                  data:{'course_id': course_id }, 
 
-                error: function(){
+                
+                beforeSend:function(){
+                      $('#success').empty();
+                    },
+                    uploadProgress:function(event, position, total, percentComplete)
+                    {
+                      $('.progress-bar').text(percentComplete + '%');
+                      $('.progress-bar').css('width', percentComplete + '%');
+                    },
+                    error: function(){
                         btn.removeAttr('disabled').html(btn.attr('data-temp'));
                         message.html('<div class="alert alert-danger">Communication Error</div>');
                     },
@@ -495,6 +551,7 @@
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     if( e.status == 'success' ){
                         $("#course_"+course_id).remove();
+
                          message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+e.message+'</div>');
                     }else{
                          message.html('<div class="alert bg-red alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+e.message+'</div>');
@@ -534,7 +591,16 @@
                 url:'/admin/course/addTopic',
                 method: 'POST',
                 data: frm.serialize(),
-                error: function(){
+                
+                beforeSend:function(){
+                      $('#success').empty();
+                    },
+                    uploadProgress:function(event, position, total, percentComplete)
+                    {
+                      $('.progress-bar').text(percentComplete + '%');
+                      $('.progress-bar').css('width', percentComplete + '%');
+                    },
+                    error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
                 },
@@ -543,11 +609,17 @@
                         // $('#AddUserModal').modal('hide');
                         // console.log(data);
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                      $('.progress-bar').text('Added');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
                         $('#topictitle').val('');
 
                     }else{
                         $.each(data.errors, function(key, value){
+  $('.progress-bar').text('0%');
+          $('.progress-bar').css('width', '0%');
                             $("#message").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                      
@@ -594,7 +666,16 @@
                contentType: false,
                cache: false,
                processData: false,
-                error: function(){
+                
+                beforeSend:function(){
+                      $('#success').empty();
+                    },
+                    uploadProgress:function(event, position, total, percentComplete)
+                    {
+                      $('.progress-bar').text(percentComplete + '%');
+                      $('.progress-bar').css('width', percentComplete + '%');
+                    },
+                    error: function(){
                     btn.removeAttr('disabled').html(btn.attr('data-temp'));
                     message.html('<div class="alert alert-danger">Communication Error</div>');
                 },
@@ -603,19 +684,23 @@
                         // $('#AddUserModal').modal('hide');
                        
                     if(data.status =='success'){
-                         message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
-
+                         // message.html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                          $('.progress-bar').text('Added');
+                          $('.progress-bar').css('width', '100%');
+                          $('#success').html('<div class="alert bg-green alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+data.message+'</div>');
+                         
                          $("#title").val('');
                          $("#type").val('');
                          $("#filename").val('');
                          $("#due_date").val('');
                          $("#completion_date").val('');
                          $("#instruction").val('');
-                         $("#tags").val('');
-                         $(".tag").remove();
-                         $("#amount").val('');
+                         $("#title").val('');
+                         $("#title").val('');
                     }else{
                         $.each(data.errors, function(key, value){
+                      $('.progress-bar').text('0%');
+                              $('.progress-bar').css('width', '0%');
                             $("#taskmessage").append("<div class='alert bg-red alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" + value + '</div>');
                         });
                      
